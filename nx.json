@@ -1,0 +1,44 @@
+{
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "production": ["default", "!{projectRoot}/.eslintrc.json"],
+        "sharedGlobals": []
+    },
+    "plugins": [
+        {
+            "plugin": "@nx/vite/plugin",
+            "options": {
+                "buildTargetName": "build",
+                "serveTargetName": "serve",
+                "previewTargetName": "preview",
+                "serveStaticTargetName": "serve-static",
+                "typecheckTargetName": "typecheck"
+            }
+        },
+        {
+            "plugin": "@nx/eslint/plugin",
+            "options": {
+                "targetName": "lint"
+            }
+        }
+    ],
+    "defaultProject": "vite-template",
+    "generators": {
+        "@nx/react": {
+            "application": {
+                "babel": true,
+                "style": "tailwind",
+                "linter": "eslint",
+                "bundler": "vite"
+            },
+            "component": {
+                "style": "tailwind"
+            },
+            "library": {
+                "style": "tailwind",
+                "linter": "eslint"
+            }
+        }
+    }
+}
